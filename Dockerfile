@@ -1,7 +1,7 @@
 ## Docker file to build app as container
 
-FROM centos:latest
-MAINTAINER
+FROM debian:jessie
+MAINTAINER "Jonathan Brown" <jdbrown@usgs.gov>
 LABEL dockerfile_version="v0.1.0"
 
 # install dependencies
@@ -23,20 +23,20 @@ RUN apt-key update -y \
       "
 
 # copy application (ignores set in .dockerignore)
-COPY . /hazdev-project
+COPY . /earthquake-hazard-probabilistic-ws
 
 # configure application
 RUN /bin/bash -c " \
     source /root/.nvm/nvm.sh; \
     export NON_INTERACTIVE=true; \
-    cd /hazdev-project \
+    cd /earthquake-hazard-probabilistic-ws \
     && npm install \
-    && ./src.lib/pre-install \
+    && ./src/lib/pre-install \
     && rm -r \
         /root/.npm \
         /tmp/npm* \
     "
 
-WORKDIR /hazdev-project
+WORKDIR /earthquake-hazard-probabilistic-ws
 EXPOSE 8000
 ENTRYPOINT src/lib/run
