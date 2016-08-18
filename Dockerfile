@@ -1,7 +1,7 @@
 ## Docker file to build app as container
 
 FROM debian:jessie
-MAINTAINER "Jonathan Brown" <jdbrown@usgs.gov>
+MAINTAINER "maintainer name" <maintainer_email@usgs.gov>
 LABEL dockerfile_version="v0.1.0"
 
 # install dependencies
